@@ -18,7 +18,9 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  // initialize the hints struct to be empty.
   memset(&hints, 0, sizeof(hints));
+  // allow both IPv4 and IPv6 with AF_UNSPEC.
   hints.ai_family = AF_UNSPEC;
   hints.ai_socktype = SOCK_STREAM;
 
@@ -29,6 +31,7 @@ int main(int argc, char *argv[]) {
 
   printf("IP address for %s:\n\n", argv[1]);
 
+  // iterate through the linked list of internet addresses.
   for (nextNode = serverInfo; nextNode != NULL; nextNode = nextNode->ai_next) {
     void *addr;
     char *ipVersion = (char *)malloc(5);
